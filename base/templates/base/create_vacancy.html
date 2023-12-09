@@ -1,8 +1,8 @@
 {% extends 'main.html' %}
 
 {% block content %}
-
-<div>
+<body>
+<div class="wrapper">
     <form method = 'POST' action="">
         {% csrf_token %}
         {{form.as_p}}
@@ -10,4 +10,5 @@
 
     </form>
 </div>
+</body>
 {% endblock content %}
