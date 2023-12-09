@@ -1,0 +1,13 @@
+*.pyc
+
+*.class
+
+*.o
+
+*.out
+
+*~
+
+*.sqlite3
+
+/__pycache__/
