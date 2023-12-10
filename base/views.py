@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect  # render - обработка, redirect - перенаправление
+from django.shortcuts import get_object_or_404, render, redirect  # render - обработка, redirect - перенаправление
 from django.contrib import messages  # Для отображения ошибок, предупреждений и тд
 from .models import Vacancy, DevGrades, Quiz
 from .forms import VacForm 
@@ -19,6 +19,17 @@ def  Home(request):
     context = {'devgrades': devgrades, 'vacancy_count': vacancy_count, 'vacancies': vacancies}  # Для вывода в фронт сайта
     return render(request, 'base/home_page.html', context)
 
+def show_devs(request, d_slug):
+    devs = get_object_or_404(DevGrades, slug=d_slug)
+    vacancies = Vacancy.objects.filter(devgrade_id=devs.pk)
+    vacancy_count = vacancies.count()  # Функция count() считает автоматически количество объектов
+
+    context = {
+     'devs': devs.pk,
+     'vacancies': vacancies,
+     'vacancy_count': vacancy_count  
+    }
+    return render(request, 'base/home_page.html', context)
 
 def vacancies(request, pk):  # pk это специальное выражение для обозначения уникальной идентификации каждой записи 
     vacancy = Vacancy.objects.get(id=pk) 

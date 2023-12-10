@@ -13,4 +13,5 @@ urlpatterns =[
     path('delete-v/<int:pk>', views.deleteVac, name='delete_vacancy'),
     path('upd-v/<int:pk>', views.updateVac, name='update_vacancy'),
     path('v-dtls/<int:pk>', views.vacancies, name='vacancy_details'),
+    path('developers/<slug:d_slug>', views.show_devs, name='devs'),
 ]
