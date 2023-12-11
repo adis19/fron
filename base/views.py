@@ -1,7 +1,8 @@
+from django import forms
 from django.shortcuts import get_object_or_404, render, redirect  # render - обработка, redirect - перенаправление
 from django.contrib import messages  # Для отображения ошибок, предупреждений и тд
 from .models import Vacancy, DevGrades, Quiz
-from .forms import VacForm 
+from .forms import QuizForm, VacForm 
 from django.contrib.auth.decorators import login_required  # С этим можно настроить доступ, приватность 
 from django.db.models import Q  # Для поиска 
 
@@ -38,13 +39,34 @@ def vacancies(request, pk):  # pk это специальное выражени
 
 @login_required(login_url='/')
 def createVac(request):
-    form = VacForm()
+    vac_form = VacForm()
+
     if request.method == "POST":
-        form = VacForm(request.POST)
-        if form.is_valid():
-            form.save()
+        vac_form = VacForm(request.POST)
+        if vac_form.is_valid():
+            vac_form.save()
             return redirect('home_page')
-    context = {'form': form}
+
+    context = {'vac_form': vac_form}
+    return render(request, 'base/create_vacancy.html', context)
+
+def dynamic_form(request):
+    # Initial form
+    quiz = Quiz.objects.all()
+    field_form = VacForm()
+
+    # Add dynamically generated fields based on the GET parameter
+    num_dynamic_fields = int(request.GET.get('num_dynamic_fields', 0))
+    for i in range(num_dynamic_fields):
+        field_name = f'dynamic_field_{i}'
+        field_form.fields[field_name] = forms.CharField()
+
+    if request.method == 'POST':
+        field_form = QuizForm(request.POST)
+        if field_form.is_valid():
+            field_form.save()
+
+    context = {'field_form': field_form}
     return render(request, 'base/create_vacancy.html', context)
 
 @login_required(login_url='/')
