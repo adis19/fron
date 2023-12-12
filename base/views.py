@@ -52,8 +52,8 @@ def createVac(request):
 
 def dynamic_form(request):
     # Initial form
-    quiz = Quiz.objects.all()
-    field_form = VacForm()
+    field_form = Quiz.objects.all()
+    vac_form = VacForm()
 
     # Add dynamically generated fields based on the GET parameter
     num_dynamic_fields = int(request.GET.get('num_dynamic_fields', 0))

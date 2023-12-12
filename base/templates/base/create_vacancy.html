@@ -6,17 +6,17 @@
     <form method = 'POST' action="">
         {% csrf_token %}
         {{vac_form.as_p}}
+        {{field_form.as_p}}
         <input type="submit" value="Submit"/>
 
     </form>
 </div>
 <div>
-    <form method = 'POST' action="">
+    <!-- <form method = 'POST' action="">
         {% csrf_token %}
-        {{field_form.as_p}}
         <input type="submit" value="Submit"/>
 
-    </form>
+    </form> -->
 </div>
 </body>
 {% endblock content %}
