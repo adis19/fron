@@ -34,10 +34,14 @@ class Vacancy(models.Model):
     
   # Здесь надо делать опросник
 class Quiz(models.Model):
-    vacancy = models.ForeignKey(Vacancy, on_delete=models.CASCADE)
+    vacancy = models.ForeignKey(Vacancy, on_delete=models.SET_NULL, null=True)
     question = models.CharField(max_length=100)
+    
     
     def __str__(self):
         return self.question
     
-  
+class QuizAdditionalField(models.Model):
+    quiz = models.ForeignKey(Quiz, on_delete=models.CASCADE)
+    field_name = models.CharField(max_length=100)
+    value = models.CharField(max_length=255)
