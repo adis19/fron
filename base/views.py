@@ -25,9 +25,14 @@ def  Home(request):
                                 )  # Параметр __icontains считывает прописные и строчные символы по заданоому имени, немного различается, нежели __contains
     devgrades = DevGrades.objects.all()
     vacancy_count = vacancies.count()  # Функция count() считает автоматически количество объектов
-
     context = {'devgrades': devgrades, 'vacancy_count': vacancy_count, 'vacancies': vacancies}  # Для вывода в фронт сайта
     return render(request, 'base/home_page.html', context)
+
+def about_us(request):
+    return render(request, 'base/about_us.html')
+
+def news(request):
+    return render(request, 'base/news.html')
 
 def show_devs(request, d_slug):
     devs = get_object_or_404(DevGrades, slug=d_slug)

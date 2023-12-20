@@ -18,4 +18,6 @@ urlpatterns =[
     path('v-dtls/<int:pk>', views.vacancies, name='vacancy_details'),
     path('quiz/<int:pk>', views.show_quiz, name='quiz'),
     path('developers/<slug:d_slug>', views.show_devs, name='devs'),
+    path('news', views.news, name='news'),
+    path('about', views.about_us, name='about_us'),
 ]
