@@ -19,7 +19,7 @@ class Vacancy(models.Model):
     name = models.CharField(max_length=30, null=True)
     employer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)  # Работодатель
     devgrade = models.ForeignKey(DevGrades, on_delete=models.SET_NULL, null=True)  # Уровень
-    description = models.TextField(null=True)
+    description = models.TextField(null=True, verbose_name="Demands")
     updated = models.DateTimeField(auto_now=True)  # Изменено
     created = models.DateTimeField(auto_now_add=True)  # Добавлено, эти можно использовать при сортировке
  

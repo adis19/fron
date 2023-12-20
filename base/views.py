@@ -53,7 +53,7 @@ def vacancies(request, pk):  # pk это специальное выражени
     context = {'vacancy': vacancy, 'vac_list': vac_list}
     return render(request, 'base/vacancy_details.html', context)
 
-@login_required(login_url='/')
+@login_required(login_url='/login')
 def createVac(request):
     vac_form = VacForm()
 

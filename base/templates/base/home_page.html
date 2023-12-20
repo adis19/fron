@@ -8,8 +8,9 @@
 <div class="wrapper">
 <div class="home-container">
     <div>
-    <br>
-        <h3>Browse Topics</h3>
+        <br>
+        <br>
+        <h4>Browse</h4>
         <hr>
             <div>
                 <a href="{% url 'home_page'  %}">All</a>
@@ -22,19 +23,26 @@
 
 
     <div>
-        <h6>Avialable vacancy count: {{vacancy_count}}</h6>
-        <a href="{% url 'create_vacancy' %}">Create vacancy</a>
-<!--        <hr>-->
+        <h6>Avialable vacancies: {{vacancy_count}}</h6>
+        <br>
+        {% if user.is_authenticated %}
+        <h><a href="{% url 'create_vacancy' %}">Create vacancy</a></h6>
+        {% endif %}
+       <!-- <hr> -->
         <br><br>
         {% for vacancy in vacancies %}
         <div>
+            {% if employer == vacancy.id.employer %}
             <a href="{% url 'delete_vacancy' vacancy.id%}">Delete</a>
             <a href="{% url 'update_vacancy' vacancy.id %}">Edit</a>
+            {% endif %}
             <br>
             <h3><a href="{% url 'vacancy_details' vacancy.id%}">{{vacancy.name}}</a></h3>
             <br>
+            <small>Created on: {{ vacancy.created|date:"D, M j, Y" }}</small>
+
             <!-- <small>{{room.topic.name}}</small> -->
-            <h6><a href="#">@{{vacancy.employer.username}}</a></h6>
+            <h6><a href="#">Employer: {{vacancy.employer.username}}</a></h6>
             <hr>
         </div>
 
