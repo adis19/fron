@@ -32,18 +32,20 @@
         <br><br>
         {% for vacancy in vacancies %}
         <div>
-            {% if employer == vacancy.id.employer %}
-            <a href="{% url 'delete_vacancy' vacancy.id%}">Delete</a>
-            <a href="{% url 'update_vacancy' vacancy.id %}">Edit</a>
-            {% endif %}
-            <br>
-            <h3><a href="{% url 'vacancy_details' vacancy.id%}">{{vacancy.name}}</a></h3>
-            <br>
-            <small>Created on: {{ vacancy.created|date:"D, M j, Y" }}</small>
-
-            <!-- <small>{{room.topic.name}}</small> -->
-            <h6><a href="#">Employer: {{vacancy.employer.username}}</a></h6>
-            <hr>
+            <article class="media content-section">
+                <div class="media-body">
+                  <div class="article-metadata">
+                    <a class="mr-2" href="about">{{vacancy.employer.username}}</a>
+              <small class="text-muted">{{ vacancy.created|date:"D, M j, Y" }}</small>
+                {% if request.user == vacancy.employer %} 
+                <small class="text-muted"><a href="{% url 'delete_vacancy' vacancy.id%}">Delete</a></small>
+                <small class="text-muted"><a href="{% url 'update_vacancy' vacancy.id %}">Edit</a></small>
+                {% endif %}    
+                  </div>
+                  <h2><a class="article-title" href="{% url 'vacancy_details' vacancy.id%}">{{vacancy.name}}</a></h2>
+                  <p class="article-content">{{ post.content }}</p>
+                </div>
+              </article>
         </div>
 
         {% endfor %}

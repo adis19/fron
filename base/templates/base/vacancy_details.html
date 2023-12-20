@@ -5,21 +5,56 @@
 <head>
     <meta charset="UTF-8">
     <!-- <title>Vacancy №{{ vacancy.id }}</title> -->
+    <style>
+        /* Пример стилей для новостей */
+        .news-container {
+            max-width: 800px;
+            margin: 2 auto;
+            padding: 10px;
+            font-family: Arial, sans-serif;
+        }
+        .news-article {
+            border-bottom: 1px solid #c49494;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+        }
+        .news-title {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .news-content {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        .news-date {
+            color: #b46e6e;
+            font-size: 14px;
+        }
+    </style>
 </head>
 <body>
-    <a href="{% url 'send_message' %}">Send message</a>
+    <!-- <a href="{% url 'send_message' %}">Send message</a>
 
     {% for devgrade in devgrades %}
     <small>{{ devgrade.name }}</small>
-    {% endfor %}
-
-    <h1>{{vacancy.name}}</h1>
-    <hr>Demands:
-            <h5>{{ vacancy.description }}</h5>
-    <div>
-        <a href="" type></a>
+    {% endfor %} -->
+<div class="news-container">
+    <div class="news-article">
+        {% for devgrade in devgrades %}
+            <h2 class="news-title">{{ devgrade.name }}</h2>
+        {% endfor %}
+    
+            <a class="nav-item nav-link " href="{% url 'send_message' %}">Send message</a>
+            <p class="news-content">    <hr>Demands:
+                <h5>{{ vacancy.description }}</h5>
+    
+    
+    
+            </p>
+            <p class="news-date">{{ vacancy.created|date:"D, M j, Y" }}</p>
     </div>
-    <a href="{% url 'quiz' vacancy.pk %}">Request</a>
+</div>
     {% endblock %}
 </body>
 </html>
