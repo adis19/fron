@@ -8,3 +8,8 @@ class Profile(models.Model):
 
     def _str_(self):
         return f'{self.user.username} Profile'
+    
+class InMessages(models.Model):
+    user = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
+    topic = models.CharField(max_length=30)
+    text = models.TextField()

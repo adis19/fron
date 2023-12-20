@@ -3,8 +3,8 @@ from django.shortcuts import render, redirect
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 
-from users.models import Profile
-from .userforms import UserRegisterForm
+from users.models import InMessages, Profile
+from .userforms import SendMessageForm, UserRegisterForm
 from django.contrib.auth import authenticate, logout as user_logout # База для входа и выхода с учетной записи
 from django.contrib.auth import login
 from django.contrib.auth.models import User  # База для авторизации
@@ -73,3 +73,19 @@ def u_login(request):
 def logout(request):
     user_logout(request)
     return render(request,'userlogout.html')
+
+def in_messages(request):
+    send_message_form = SendMessageForm()
+
+    if request.method == 'POST':
+        send_message_form = SendMessageForm(request.POST)
+        if send_message_form.is_valid():
+            send_message_form.save()
+            return redirect('home_page')
+    context = {'send_message_form': send_message_form}
+    return render(request, 'send_message.html', context)
+
+def show_messages(request):
+    show_messages = InMessages.objects.all()
+    context = {'show_messages': show_messages}
+    return render(request, 'message.html', context)
