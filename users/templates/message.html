@@ -9,10 +9,12 @@
     {% if show_messages %}
         <ul>
             {% for message in show_messages %}
-                <li>
+                   <div class='content section'>
+                 <div>
                     <strong>Sender:</strong> {{ message.user }}<br>
                     <strong>Content:</strong> {{ message.text }}
-                </li>
+                </div>
+                       </div>
             {% endfor %}
         </ul>
     {% else %}
