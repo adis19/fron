@@ -4,52 +4,64 @@
 {% include 'search_bar.html' %}
 {% block search_bar %}
 {% endblock %}
+
+<style>
+    /* Стили для фонового градиента */
+    body {
+        background: linear-gradient(to bottom right, #D3D3D3, #2F4F4F);
+        /* Дополнительные свойства для улучшения читаемости текста или других элементов на фоне */
+        color: #fff; /* Например, белый текст на фоне градиента */
+    }
+</style>
 <!-- asdsda -->
 <div class="wrapper">
-<div class="home-container">
-    <div>
-        <br>
-        <br>
-        <h4>Browse</h4>
-        <hr>
+    <div class="home-container">
+        <div>
+            <br>
+            <br>
+            <h4>Browse</h4>
+            <hr>
             <div>
                 <a href="{% url 'home_page'  %}">All</a>
             </div>
-            
-            {% block list %}    
+
+            {% block list %}
             {% include 'base/list_developers.html' %}
-        {% endblock %}
-    </div>
-
-
-    <div>
-        <h6>Avialable vacancies: {{vacancy_count}}</h6>
-        <br>
-        {% if user.is_authenticated %}
-        <h><a href="{% url 'create_vacancy' %}">Create vacancy</a></h6>
-        {% endif %}
-       <!-- <hr> -->
-        <br><br>
-        {% for vacancy in vacancies %}
-        <div>
-            <article class="media content-section">
-                <div class="media-body">
-                  <div class="article-metadata">
-                    <a class="mr-2" href="about">{{vacancy.employer.username}}</a>
-              <small class="text-muted">{{ vacancy.created|date:"D, M j, Y" }}</small>
-                {% if request.user == vacancy.employer %} 
-                <small class="text-muted"><a href="{% url 'delete_vacancy' vacancy.id%}">Delete</a></small>
-                <small class="text-muted"><a href="{% url 'update_vacancy' vacancy.id %}">Edit</a></small>
-                {% endif %}    
-                  </div>
-                  <h2><a class="article-title" href="{% url 'vacancy_details' vacancy.id%}">{{vacancy.name}}</a></h2>
-                  <p class="article-content">{{ post.content }}</p>
-                </div>
-              </article>
+            {% endblock %}
         </div>
 
-        {% endfor %}
+        <div>
+            <h6>Available vacancies: {{ vacancy_count }}</h6>
+            <br>
+            {% if user.is_authenticated %}
+                <h><a href="{% url 'create_vacancy' %}">Create vacancy</a></h>
+            {% endif %}
+            <br><br>
+            {% for vacancy in vacancies %}
+                <div>
+                    <article class="media content-section">
+                        <div class="media-body">
+                            <div class="article-metadata">
+                                <a class="mr-2" href="about">{{ vacancy.employer.username }}</a>
+                                <small class="text-muted">{{ vacancy.created|date:"D, M j, Y" }}</small>
+                                {% if request.user == vacancy.employer %}
+                                    <small class="text-muted"><a href="{% url 'delete_vacancy' vacancy.id %}">Delete</a></small>
+                                    <small class="text-muted"><a href="{% url 'update_vacancy' vacancy.id %}">Edit</a></small>
+                                {% endif %}
+                            </div>
+                            <h2><a class="article-title" href="{% url 'vacancy_details' vacancy.id %}">{{ vacancy.name }}</a></h2>
+                            {% if vacancy.salary %}
+                                <p>Зарплата: {{ vacancy.salary }}</p>
+                            {% endif %}
+                            {% if vacancy.photo %}
+                                <img src="{{ vacancy.photo.url }}" alt="Vacancy photo" style="max-width: 300px; height: auto;">
+                            {% endif %}
+                            <p class="article-content">{{ post.content }}</p>
+                        </div>
+                    </article>
+                </div>
+            {% endfor %}
+        </div>
     </div>
-</div>
 </div>
 {% endblock content %}

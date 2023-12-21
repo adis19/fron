@@ -123,3 +123,9 @@ footer a:hover {
   color:#777;
   text-decoration: none;
 }
+.news-article img {
+            max-width: 100%;
+            height: auto;
+            /* Добавьте другие необходимые стили, например, максимальную высоту или ширину */
+           max-height: 300px;
+}
