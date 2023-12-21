@@ -17,12 +17,14 @@ class DevGrades(models.Model):  # Джуниор, Миддл, Сеньор, Ст
 
 class Vacancy(models.Model):
     name = models.CharField(max_length=30, null=True)
-    employer = models.ForeignKey(User, on_delete=models.SET_NULL, null=True)  # Работодатель
+    employer = models.ForeignKey(User, on_delete=models.SET_NULL, default=User, null=True)  # Работодатель
     devgrade = models.ForeignKey(DevGrades, on_delete=models.SET_NULL, null=True)  # Уровень
     description = models.TextField(null=True, verbose_name="Demands")
     updated = models.DateTimeField(auto_now=True)  # Изменено
     created = models.DateTimeField(auto_now_add=True)  # Добавлено, эти можно использовать при сортировке
- 
+    photo = models.ImageField(upload_to='vacancy_photos/', null=True, blank=True)  # Фотография вакансии
+    salary = models.IntegerField(null=True, blank=True)  # Зарплата
+
 
     class Meta: 
         ordering = ['-created']  # Наверное можно вывести прямо отсюда фильтр по Джунам, Сеньорам и тд

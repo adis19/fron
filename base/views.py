@@ -143,11 +143,6 @@ def deleteVac(request,pk):
         return redirect('home_page')
     return render(request, 'base/delete_valid.html', {'obj': vacancy})
 
-# @login_required(login_url='/')
-# def createQuiz(request, pk):
-#     quiz_form = Quiz.objects.all()
-
-#     # if request.method = 'POST':
-#     context = {'quiz_form': quiz_form}
-#     return render(request, 'base/create_quiz.html', context)
-
+def info_view(request):
+    # Ваш код для обработки запроса и формирования ответа
+    return render(request, 'base/info_page.html')

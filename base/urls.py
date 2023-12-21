@@ -20,4 +20,5 @@ urlpatterns =[
     path('developers/<slug:d_slug>', views.show_devs, name='devs'),
     path('news', views.news, name='news'),
     path('about', views.about_us, name='about_us'),
+    path('new_page/', views.info_view, name='new_page_url'),
 ]

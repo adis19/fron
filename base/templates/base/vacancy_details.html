@@ -1,60 +1,57 @@
+{% include "navbar.html" %}
+{% load crispy_forms_tags %}
+{% load static %}
+
 <!DOCTYPE html>
 <html lang="en">
-    {% extends 'main.html' %}
-    {% block content %}
+
 <head>
     <meta charset="UTF-8">
-    <!-- <title>Vacancy №{{ vacancy.id }}</title> -->
+    <link rel="stylesheet" href="{% static 'path_to_your_static_file.css' %}">
     <style>
-        /* Пример стилей для новостей */
-        .news-container {
-            max-width: 800px;
-            margin: 2 auto;
-            padding: 10px;
-            font-family: Arial, sans-serif;
-        }
         .news-article {
-            border-bottom: 1px solid #c49494;
+            position: relative;
+            padding-bottom: 70px; /* Подстраиваем под размер кнопки и блока описания */
+        }
+
+        .description {
             margin-bottom: 20px;
-            padding-bottom: 20px;
         }
-        .news-title {
-            font-size: 24px;
-            font-weight: bold;
-            margin-bottom: 10px;
+
+        .send-message-btn {
+            position: absolute;
+            bottom: 10px; /* Отступ от нижнего края */
+            right: 10px; /* Отступ от правого края */
         }
-        .news-content {
-            font-size: 16px;
-            line-height: 1.6;
-        }
-        .news-date {
-            color: #b46e6e;
-            font-size: 14px;
+
+        .primary-list {
+            /* Стили для списка */
         }
     </style>
 </head>
-<body>
-    <!-- <a href="{% url 'send_message' %}">Send message</a>
 
-    {% for devgrade in devgrades %}
-    <small>{{ devgrade.name }}</small>
-    {% endfor %} -->
-<div class="news-container">
-    <div class="news-article">
-        {% for devgrade in devgrades %}
-            <h2 class="news-title">{{ devgrade.name }}</h2>
-        {% endfor %}
-    
-            <a class="nav-item nav-link " href="{% url 'send_message' %}">Send message</a>
-            <p class="news-content">    <hr>Demands:
-                <h5>{{ vacancy.description }}</h5>
-    
-    
-    
-            </p>
+<body>
+    <div class="content-section">
+        <div class="news-article">
+            {% for devgrade in devgrades %}
+                <h2 class="news-title">{{ devgrade.name }}</h2>
+            {% endfor %}
+
+            <div class="description">
+                <hr>
+                <h5>Demands:</h5>
+                <p>{{ vacancy.description }}</p>
+            </div>
+
+            <a class="btn btn-primary send-message-btn" href="{% url 'send_message' %}">Send message</a>
+
             <p class="news-date">{{ vacancy.created|date:"D, M j, Y" }}</p>
+        </div>
+
+        <div class="primary-list">
+            <!-- Ваш список primary list -->
+        </div>
     </div>
-</div>
-    {% endblock %}
 </body>
+
 </html>

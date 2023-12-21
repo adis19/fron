@@ -6,6 +6,8 @@ class VacForm(ModelForm):
     class Meta:
         model = Vacancy
         fields = '__all__'
+        
+        
 
 # class Ordering(ModelForm):
 #     class Meta:
