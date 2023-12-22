@@ -10,23 +10,23 @@
         }
 
         .content-section h4 {
-            color: #007bff;
+            color: #212057;
         }
 
-        .content-section p {
+        .content-section.p2 p {
             margin-bottom: 15px;
             line-height: 1.6;
             position: relative;
-            padding-left: 30px;
+            padding-left: 20px;
         }
 
-        .content-section p::before {
+        .content-section.p2 p::before {
             content: "\2022"; /* Здесь используется юникод-символ маркера для точки */
             color: #007bff;
             font-size: 18px;
-            position: absolute;
-            left: 5px;
-            top: 50%;
+            position: relative;
+            left: -5px;
+            top: 25%;
             transform: translateY(-50%);
         }
 
@@ -36,11 +36,11 @@
         }
     </style>
 
-    <div class="content-sectio">
+    <div class="content-section p2">
         <h4>Добро пожаловать на нашу платформу, которая предоставляет уникальные возможности для успешного поиска работы в сфере информационных технологий.</h4>
     </div>
 
-    <div class="content-section border-top pt-3">
+    <div class="content-section border-top p2 pt-3">
         <p>Мы создали ITJobSearch с целью помочь талантливым специалистам находить идеальные вакансии в IT-сфере.</p>
         <p>ITJobSearch - это не просто поиск работы, а целая экосистема, где ваши навыки встречаются с возможностями ведущих IT-компаний.</p>
         <!-- Другие абзацы и стили здесь -->

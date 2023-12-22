@@ -10,6 +10,6 @@ class Profile(models.Model):
         return f'{self.user.username} Profile'
     
 class InMessages(models.Model):
-    user = models.ForeignKey(Profile, on_delete=models.CASCADE, null=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     topic = models.CharField(max_length=30)
     text = models.TextField()
