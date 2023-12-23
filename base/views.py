@@ -46,17 +46,11 @@ def show_devs(request, d_slug):
     }
     return render(request, 'base/home_page.html', context)
 
-def show_vac_list(request, pk):
-    vac_list = Vacancy.objects.all()
-    vacancy = Vacancy.objects.get(id=pk)
-
-    context ={'vac_list': vac_list,'vacancy': vacancy}
-    return render(request, 'base/home_page', context)
-    
 def vacancies(request, pk):  # pk это специальное выражение для обозначения уникальной идентификации каждой записи 
     vacancy = Vacancy.objects.get(id=pk) 
+    vac_list = Vacancy.objects.all()
      
-    context = {'vacancy': vacancy}
+    context = {'vacancy': vacancy, 'vac_list': vac_list}
     return render(request, 'base/vacancy_details.html', context)
 
 @login_required(login_url='/login')
@@ -150,4 +144,5 @@ def deleteVac(request,pk):
     return render(request, 'base/delete_valid.html', {'obj': vacancy})
 
 def info_view(request):
+    # Ваш код для обработки запроса и формирования ответа
     return render(request, 'base/info_page.html')
