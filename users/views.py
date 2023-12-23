@@ -57,7 +57,7 @@ def u_login(request):
 
         try:  # Функция authenticate() для установки соответствия с именнем и паролем
             user = User.objects.get(username=username)
-            user = authenticate(request, username=username, password=password)
+            user = authenticate(username=username, password=password)
 
             if user is not None:  # Если пользователь не <<Не найден>>, то перенаправляет в указанный .html
                 login(request, user)
@@ -68,6 +68,7 @@ def u_login(request):
             messages.error(request, "User does not exist.")
 
     return render(request, 'userlogin.html')
+
 
 
 def logout(request):

@@ -6,15 +6,7 @@ from .forms import QuizForm, VacForm
 from django.contrib.auth.decorators import login_required  # С этим можно настроить доступ, приватность 
 from django.db.models import Q  # Для поиска 
 
-def show_primary_list(request):
-    if request.method == 'GET':
-        vac_id = get_object_or_404(Vacancy, id=id)
-        vac_list = Vacancy.objects.all()
-        context = {
-            'vac_list': vac_list,
-            'vac_id': vac_id
-        }
-        return render(request, 'navbar.html', context)
+
 
 def  Home(request):  
     q = request.GET.get('q') if request.GET.get('q') is not None else ''  # Временная q будет содержать значение параметра 'q' из запроса, если таковой присутствует, иначе она будет равна пустой строке. Это часто используется для обработки поисковых запросов или других параметров веб-страницы.
@@ -36,7 +28,7 @@ def news(request):
 
 def show_devs(request, d_slug):
     devs = get_object_or_404(DevGrades, slug=d_slug)
-    vacancies = Vacancy.objects.filter(devgrade_id=devs.pk)
+    vacancies = Vacancy.objects.filter(devgrade=devs.pk)
     vacancy_count = vacancies.count()  # Функция count() считает автоматически количество объектов
 
     context = {
