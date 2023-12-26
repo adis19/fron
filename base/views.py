@@ -26,6 +26,9 @@ def about_us(request):
 def news(request):
     return render(request, 'base/news.html')
 
+def vacancies(request):
+    return render(request, 'base/vacancies.html')
+
 def show_devs(request, d_slug):
     devs = get_object_or_404(DevGrades, slug=d_slug)
     vacancies = Vacancy.objects.filter(devgrade=devs.pk)

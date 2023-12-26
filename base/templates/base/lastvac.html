@@ -1,0 +1,13 @@
+ <div class="col-md-3">
+                <div class="content-section">
+                    <h3>Вакансии</h3>
+                    <p class='text-muted'>Последние вакансии
+                    <ul class="list-group">
+
+                        {% for i in vacancy %}
+                        <li class="list-group-item list-group-item-light">{{i.name}}</li>
+                        {% endfor %}
+                    </ul>
+                    </p>
+                </div>
+                </div>

@@ -2,19 +2,19 @@
 {% load crispy_forms_tags %}
 {% block content %}
     <div class="content-section">
-        <form method="POST">
+        <form method="POST" style="margin: 0 auto; max-width: 400px;">
             {% csrf_token %}
             <fieldset class="form-group">
                 <legend class="border-bottom mb-4">Добро пожаловать на сайт HeadHunter</legend>
                 {{ form.as_p }}
             </fieldset>
-            <div class="form-group">
+            <div class="form-group text-center">
                 <button class="btn btn-outline-info" type="submit">Регистрация</button>
             </div>
         </form>
-        <div class="border-top pt-4">
+        <div class="border-top pt-4 text-center">
             <small class="text-muted">
-                Already have an account?<a class="ml-2" href="{% url 'loginPage' %}">Sign in</a>
+                Уже есть аккаунт? <a href="{% url 'loginPage' %}">Войти</a>
             </small>
         </div>
     </div>
